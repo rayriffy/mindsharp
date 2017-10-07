@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Offline | Mindsharp Story</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <meta name="theme-color" content="#01579b">
+  <meta name="msapplication-navbutton-color" content="#01579b">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#01579b">
+  <link rel="icon" type="image/jpg" href="img/ico.jpg">
+  <style>
+    body {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+    main {
+      flex: 1 0 auto;
+    }
+    .riffyfullH {
+      height: 100vh !important;
+    }
+    .carousel-slider {
+    height: 400px !important;
+    }
+    .dropdown-content {
+      width: 250px  !important;
+    }
+  </style>
+  <style>
+    body {
+    	overflow: hidden;
+    }
+    #preloader {
+    	position: fixed;
+    	top:0;
+    	left:0;
+    	right:0;
+    	bottom:0;
+    	background-color:#ffffff;
+    	z-index:99;
+    }
+
+    #status {
+    	width:200px;
+    	height:200px;
+    	position:absolute;
+    	left:50%;
+    	top:50%;
+    	background-image:url(img/loader.gif);
+    	background-repeat:no-repeat;
+    	background-position:center;
+    	margin:-100px 0 0 -100px;
+    }
+  </style>
+</head>
+<body id="top">
+  <div>
+    <nav>
+      <div class="nav-wrapper light-blue darken-3">
+        <a href="#!" class="brand-logo center"><img src="img/ico.jpg" width="50px"></a>
+        <div class="container"><a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a></div>
+        <ul class="left hide-on-med-and-down">
+          <li class="active"><a href="#">Home</a></li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="#">OFFLINE</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="section white riffyfullH" id="content">
+    <div class="container">
+      <div class="row">
+        <center>
+          <svg style="width:50%;height:50%" viewBox="0 0 24 24">
+            <path fill="#757575" d="M7.73,10L15.73,18H6A4,4 0 0,1 2,14A4,4 0 0,1 6,10M3,5.27L5.75,8C2.56,8.15 0,10.77 0,14A6,6 0 0,0 6,20H17.73L19.73,22L21,20.73L4.27,4M19.35,10.03C18.67,6.59 15.64,4 12,4C10.5,4 9.15,4.43 8,5.17L9.45,6.63C10.21,6.23 11.08,6 12,6A5.5,5.5 0 0,1 17.5,11.5V12H19A3,3 0 0,1 22,15C22,16.13 21.36,17.11 20.44,17.62L21.89,19.07C23.16,18.16 24,16.68 24,15C24,12.36 21.95,10.22 19.35,10.03Z" />
+          </svg>
+        </center>
+      </div>
+      <div class="row">
+        <b><center><font color="#757575"><h4>OFFLINE</h4></font></center></b>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-footer light-blue darken-3">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Minesharp Story</h5>
+          <p class="grey-text text-lighten-4">>///<</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Get in touch</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="https://web.facebook.com/mindsharpth">Facebook</a></li>
+            <li><a class="grey-text text-lighten-3" href="#top">Twitter</a></li>
+            <li><a class="grey-text text-lighten-3" href="#content">Email</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      © <? echo date("Y"); ?> Riffy Tech
+      <a class="grey-text text-lighten-4 right" href="https://facebook.com/rayriffy">Contact Dev</a>
+      </div>
+    </div>
+  </footer>
+  <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    <a id="top_btn" class="btn btn-floating btn-large light-blue" href="#top"><i class="material-icons">keyboard_arrow_up</i></a>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script type="text/javascript">
+    $(window).on('load', function() { // SHOW PRELOAD UNTIL PAGE IS COMPLETELY LOADED
+      $('#status').fadeOut();
+      $('#preloader').delay(500).fadeOut('slow');
+      $('body').delay(350).css({'overflow':'visible'});
+    })
+  </script>
+</body>
+<div id="preloader">
+	<div id="status">&nbsp;</div>
+</div>
+</html>
+
+<!-- JS SETUP -->
+<script type="text/javascript">
+  $(document).ready(function(){
+    var toast = Materialize.toast('Loading...', 3000);
+  });
+</script>
+<!-- ANIMATE SCROLL -->
+<script type="text/javascript">
+  $('a[href*="#"]:not([href="#"])').click(function() {
+    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+      if (target.length) {
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 1000);
+        return false;
+      }
+    }
+  });
+</script>

@@ -1,0 +1,60 @@
+importScripts('js/sw-toolbox.js');
+
+toolbox.precache([
+  'https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css', 'js/sw-toolbox.js', 'js/materialize.js','js/init.js','https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js','https://fonts.googleapis.com/icon?family=Material+Icons',
+  'img/ico.jpg','img/loader.gif',
+  'fonts/roboto/Roboto-Regular.woff2','fonts/roboto/Roboto-Light.woff2','fonts/roboto/Roboto-Bold.woff2','manifest.json','offline.html'
+])
+
+toolbox.options.debug = false;
+toolbox.options.cache.name = "mindsharp-v1";
+
+self.addEventListener('install', function install() {
+  self.skipWaiting();
+})
+self.addEventListener('activate', function activate(e) {
+  e.waitUntil(self.clients.claim())
+})
+
+toolbox.router.get("(.*)", function get(req, vals, opts) {
+  return toolbox.networkFirst(req, vals, opts)
+    .catch(function(error) {
+      console.log({req, vals, opts, error})
+      if (req.method === "GET" && req.headers.get("accept").includes("text/html")) {
+        return toolbox.cacheOnly(new Request("offline.html"), vals, opts)
+      }
+      throw error
+    })
+})
+
+toolbox.router.get("css/*.css", toolbox.fastest)
+toolbox.router.get("js/*.js", toolbox.fastest)
+toolbox.router.get("fonts/*", toolbox.fastest)
+toolbox.router.get("img/*.jpg", toolbox.fastest)
+toolbox.router.get("img/*.gif", toolbox.fastest)
+toolbox.router.get("img/*.svg", toolbox.fastest)
+toolbox.router.get("img/*.png", toolbox.fastest)
+toolbox.router.get("manifest.json", toolbox.networkFirst)
+
+
+importScripts('https://www.gstatic.com/firebasejs/4.1.3/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/4.1.3/firebase-messaging.js');
+
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyALRix7FPp1-nRkSq3WZ4CW08Cl1jw5dTg",
+  authDomain: "mindsharp.rayriffy.com",
+  projectId: "mindsharp-story",
+  storageBucket: "mindsharp-story.appspot.com",
+  messagingSenderId: "810789256676"
+};
+firebase.initializeApp(config);
+
+const messaging=firebase.messaging();
+messaging.setBackgroundMessageHandler(function(payload) {
+  const title='Mindsharp Story';
+  const options={
+    body: payload.data.status
+  };
+  return self.registration.showNotification(title, options);
+});
