@@ -1,3 +1,5 @@
+importScripts('https://cdn.onesignal.com/sdks/OneSignalSDK.js');
+
 var EXTRA_FILES = [];
 
 var CHECKSUM = "v1";
