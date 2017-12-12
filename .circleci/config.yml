@@ -8,9 +8,6 @@ jobs:
 
     steps:
       - checkout
-    
-    - run: phpunit 
 
-notify:
   webhooks:
     - url: https://discordapp.com/api/webhooks/389988063662571520/2e32YJQSMOErrnSkDzmAtUIF8siuqMm5pTzt0q5HHtQ_Y8ahgocWJ08sKicFmJzdamfB/slack
