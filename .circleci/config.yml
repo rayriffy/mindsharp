@@ -1,0 +1,28 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/php:7.1.5-browsers
+      
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "composer.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run: composer install -n --prefer-dist
+
+      - save_cache:
+          paths:
+            - ./vendor
+          key: v1-dependencies-{{ checksum "composer.json" }}
+
+      - run: phpunit
+notify:
+  webhooks:
+    - url: https://discordapp.com/api/webhooks/389988063662571520/2e32YJQSMOErrnSkDzmAtUIF8siuqMm5pTzt0q5HHtQ_Y8ahgocWJ08sKicFmJzdamfB/slack
