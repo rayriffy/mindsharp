@@ -1,0 +1,34 @@
+{
+  "name": "mindsharp",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rayriffy/mindsharp.git"
+  },
+  "keywords": [
+    "mindsharp",
+    "web"
+  ],
+  "author": "Phumrapee Limpianchop",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rayriffy/mindsharp/issues"
+  },
+  "homepage": "https://github.com/rayriffy/mindsharp#readme",
+  "dependencies": {
+    "antd": "^3.1.4",
+    "chart.js": "^2.7.1",
+    "jquery": "^3.3.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-markdown": "^3.1.4",
+    "react-parallax-component": "^1.0.6",
+    "serve": "^6.4.9",
+    "workbox-cli": "^2.1.2"
+  }
+}
