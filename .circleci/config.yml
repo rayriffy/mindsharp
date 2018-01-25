@@ -1,0 +1,22 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/mindsharp
+    docker:
+      - image: alpine:latest
+    steps:
+      - run:
+          name: Install packages
+          command: apk add --no-progress --no-cache ca-certificates git openssh yarn "nodejs<9.0.0"
+      - checkout
+      - run:
+          name: Install NPM packages
+          command: yarn install
+      - run:
+          name: Build
+          command: yarn build
+      - run:
+          name: Test
+          command: yarn test
+      - store_artifacts:
+          path: /root/mindsharp
