@@ -1,34 +1,36 @@
 {
   "name": "mindsharp",
   "version": "0.1.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rayriffy/mindsharp.git"
-  },
-  "keywords": [
-    "mindsharp",
-    "web"
-  ],
-  "author": "Phumrapee Limpianchop",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/rayriffy/mindsharp/issues"
-  },
-  "homepage": "https://github.com/rayriffy/mindsharp#readme",
+  "private": true,
   "dependencies": {
     "antd": "^3.1.4",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-import": "^1.6.3",
     "chart.js": "^2.7.1",
+    "css-loader": "^0.28.9",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.6",
     "jquery": "^3.3.1",
     "react": "^16.2.0",
+    "react-app-rewire-less": "^2.1.0",
+    "react-app-rewired": "^1.4.0",
     "react-dom": "^16.2.0",
+    "react-fa": "^5.0.0",
     "react-markdown": "^3.1.4",
     "react-parallax-component": "^1.0.6",
-    "serve": "^6.4.9",
+    "react-scripts": "1.1.0",
+    "react-syntax-highlighter": "^6.1.2",
+    "style-loader": "^0.19.1",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.10.0",
     "workbox-cli": "^2.1.2"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test --env=jsdom"
+  },
+  "theme": {
+    "primary-color": "#7CD664"
   }
 }
