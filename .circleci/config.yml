@@ -28,6 +28,8 @@ jobs:
 
       - run: yarn install
 
+      - run: chmod a+x app/node_modules/.bin/react-app-rewired
+
       - save_cache:
           paths:
             - node_modules
