@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Menu, Breadcrumb, Button, Icon } from 'antd';
+import { Layout, Menu, Breadcrumb, Button, Icon, Modal, Input } from 'antd';
 import './App.css';
 import logo from './logo.svg';
 import * as firebase from 'firebase';
@@ -7,11 +7,42 @@ import * as firebase from 'firebase';
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
-function checkplayer(ip) {
-  
+function doLogin(token)
+{
+  return firebase.database().ref('/online_usr/' + token).once('value').then(function(snapshot) {
+    var player = (snapshot.val() && snapshot.val().player) || 'N/A';
+    var ip = (snapshot.val() && snapshot.val().ip) || 'N/A';
+  });
 }
 
 class App extends Component {
+  state = {
+    loading: false,
+    visible: false,
+  }
+
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  }
+  handleOk = (e) => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  }
+  handleCancel = (e) => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  }
+
+  enterLoading = () => {
+    this.setState({ loading: true });
+  }
+
   render() {
     return (
       <Layout>
@@ -36,8 +67,19 @@ class App extends Component {
                 <span className="nav-text">nav 3</span>
               </Menu.Item>
               <Menu.Item key="4">
-                <Icon type="user" />
-                <span className="nav-text">nav 4</span>
+                <Icon type="login" />
+                <span className="nav-text" onClick={this.showModal}>Login</span>
+                <Modal
+                  title="Loging in..."
+                  visible={this.state.visible}
+                  onOk={this.handleOk}
+                  onCancel={this.handleCancel}
+                >
+                  <Input placeholder="Token" type="password" />
+                  <Button type="primary" loading={this.state.loading} onClick={this.enterLoading}>
+                    Login
+                  </Button>
+                </Modal>
               </Menu.Item>
               <SubMenu key="sub1" title={<span><Icon type="mail" /><span>nav 5</span></span>}>
                 <Menu.Item key="5">Option 5</Menu.Item>
